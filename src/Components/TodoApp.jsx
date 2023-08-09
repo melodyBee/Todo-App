@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Card } from "react-bootstrap";
 import swal from "sweetalert";
 import TodoList from "./TodoList";
 import "./TodoApp.css";
@@ -36,13 +37,13 @@ const TodoApp = () => {
   };
 
   return (
-    <div className="todo-app">
-      <h1 className="title brand-font typewriter">Todo App</h1>
-      <Container>
-        <Row>
-          <Form>
-            <Col xs={10}>
-              <Form.Group className="mb-3">
+    <>
+      <div className="d-flex justify-content-center align-items-center">
+        <Card style={{ width: "45rem" }}>
+          <div className="todo-app container addtask">
+            <h1 className="title brand-font typewriter">Todo App</h1>
+            <Form className="row g-3 ">
+              <Form.Group className="col-auto">
                 <Form.Control
                   type="text"
                   placeholder="Enter a task"
@@ -50,21 +51,23 @@ const TodoApp = () => {
                   onChange={(e) => setInputText(e.target.value)}
                 />
               </Form.Group>
-            </Col>
-            <Col>
-              <Button variant="primary" onClick={handleAddTodo}>
+              <Button
+                className="col-auto"
+                variant="dark"
+                onClick={handleAddTodo}
+              >
                 Add Task
               </Button>
-            </Col>
-          </Form>
-        </Row>
-        <TodoList
-          todos={todos}
-          onUpdate={handleUpdateTodo}
-          onDelete={handleDeleteTodo}
-        />
-      </Container>
-    </div>
+            </Form>
+            <TodoList
+              todos={todos}
+              onUpdate={handleUpdateTodo}
+              onDelete={handleDeleteTodo}
+            />
+          </div>
+        </Card>
+      </div>
+    </>
   );
 };
 
